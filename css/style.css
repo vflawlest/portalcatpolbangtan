@@ -1,0 +1,324 @@
+:root {
+  --polbangtan-dark: #1b5e20; /* Hijau Tua Khas Kampus */
+  --polbangtan-main: #2e7d32; /* Hijau Utama */
+  --polbangtan-light: #4caf50; /* Hijau Terang/Aksen */
+  --bg-color: #f1f8e9; /* Hijau Sangat Muda untuk Latar */
+  --text-main: #333333;
+  --white: #ffffff;
+  --danger: #e74c3c;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: var(--bg-color);
+  margin: 0;
+  padding: 20px;
+  color: var(--text-main);
+}
+
+.container {
+  max-width: 950px;
+  margin: 0 auto;
+  background: var(--white);
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(46, 125, 50, 0.15);
+  border-top: 6px solid var(--polbangtan-dark);
+}
+
+h1,
+h2,
+h3 {
+  color: var(--polbangtan-dark);
+  text-align: center;
+}
+
+.header-logo {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.header-logo span {
+  background: var(--polbangtan-dark);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  font-size: 1.2em;
+}
+
+/* Form Styles */
+.form-group {
+  margin-bottom: 20px;
+}
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--polbangtan-main);
+}
+input,
+select {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #c8e6c9;
+  border-radius: 8px;
+  font-size: 16px;
+  font-family: inherit;
+  transition: all 0.3s;
+}
+input:focus,
+select:focus {
+  border-color: var(--polbangtan-light);
+  outline: none;
+  box-shadow: 0 0 8px rgba(76, 175, 80, 0.3);
+}
+
+/* Tombol Interaktif */
+button {
+  background-color: var(--polbangtan-main);
+  color: var(--white);
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-family: inherit;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+button:hover:not(:disabled) {
+  background-color: var(--polbangtan-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(46, 125, 50, 0.2);
+}
+button:disabled {
+  background-color: #bdc3c7;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+.btn-danger {
+  background-color: var(--danger);
+}
+.btn-danger:hover:not(:disabled) {
+  background-color: #c0392b;
+}
+
+/* Layout Simulasi */
+.header-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #e8f5e9;
+  padding: 15px 25px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  border-left: 5px solid var(--polbangtan-main);
+}
+.timer {
+  font-size: 1.4em;
+  font-weight: bold;
+  background: var(--polbangtan-dark);
+  color: white;
+  padding: 5px 15px;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+.timer.warning {
+  background: var(--danger);
+  animation: pulse 1s infinite;
+}
+
+.quiz-layout {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+.question-section {
+  flex: 3;
+  min-width: 300px;
+  animation: fadeIn 0.4s ease-in-out;
+}
+.navigation-section {
+  flex: 1;
+  min-width: 220px;
+  background: #fafafa;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
+  height: fit-content;
+}
+
+/* Soal & Jawaban */
+.question-text {
+  font-size: 1.15em;
+  margin-bottom: 25px;
+  line-height: 1.6;
+}
+.category-badge {
+  display: inline-block;
+  background: var(--polbangtan-light);
+  color: white;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.85em;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+.option {
+  display: block;
+  background: #fff;
+  border: 2px solid #e0e0e0;
+  padding: 15px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+}
+.option:hover {
+  border-color: var(--polbangtan-light);
+  background: #f1f8e9;
+  transform: translateX(5px);
+}
+.option.selected {
+  background: var(--polbangtan-main);
+  color: white;
+  border-color: var(--polbangtan-dark);
+  transform: translateX(5px);
+  font-weight: 600;
+}
+
+.btn-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  gap: 15px;
+}
+
+/* Navigasi Grid */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  margin-top: 15px;
+}
+.grid-item {
+  padding: 10px 0;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  background: white;
+  font-size: 0.9em;
+  transition: 0.2s;
+  font-weight: bold;
+}
+.grid-item:hover {
+  background: #e8f5e9;
+  border-color: var(--polbangtan-light);
+}
+.grid-item.answered {
+  background: var(--polbangtan-light);
+  color: white;
+  border-color: var(--polbangtan-main);
+}
+.grid-item.active {
+  border: 3px solid #ff9800;
+  transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(255, 152, 0, 0.4);
+}
+
+/* Hasil Akhir */
+.result-item {
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  animation: fadeIn 0.5s ease-in-out;
+}
+.correct-answer {
+  color: var(--polbangtan-main);
+  font-weight: bold;
+  margin-top: 10px;
+}
+.wrong-answer {
+  color: var(--danger);
+  font-weight: bold;
+}
+.explanation {
+  background: #f1f8e9;
+  padding: 15px 20px;
+  border-left: 5px solid var(--polbangtan-main);
+  margin-top: 15px;
+  border-radius: 0 8px 8px 0;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.score-box {
+  background: var(--polbangtan-main);
+  color: white;
+  text-align: center;
+  padding: 30px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  box-shadow: 0 5px 15px rgba(46, 125, 50, 0.3);
+}
+.score-box h1 {
+  color: white;
+  font-size: 3.5em;
+  margin: 10px 0;
+}
+
+/* Tabel Rincian */
+.stats-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.stats-table th {
+  background: var(--polbangtan-dark);
+  color: white;
+  padding: 12px;
+  text-align: left;
+}
+.stats-table td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+.stats-table tr:hover {
+  background: #f9f9f9;
+}
+
+.hidden {
+  display: none !important;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

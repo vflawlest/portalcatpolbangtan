@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simulasi CAT Polbangtan 2026</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div id="login-screen">
+        <div class="header-logo">
+          <span>PORTAL CAT POLBANGTAN</span>
+        </div>
+        <h2>Pendaftaran Simulasi Seleksi Masuk</h2>
+        <p style="text-align: center; color: #666; margin-bottom: 30px">
+          Silakan lengkapi data diri Anda sebelum memulai tes berbasis komputer
+          (CAT).
+        </p>
+
+        <div class="form-group">
+          <label>Nama Lengkap</label
+          ><input
+            type="text"
+            id="userName"
+            placeholder="Contoh: Budi Santoso"
+          />
+        </div>
+        <div class="form-group">
+          <label>Asal Daerah</label
+          ><input
+            type="text"
+            id="userRegion"
+            placeholder="Contoh: Jawa Barat"
+          />
+        </div>
+        <div class="form-group">
+          <label>Nomor Telepon/Whatsapp</label
+          ><input
+            type="text"
+            id="userPhone"
+            placeholder="Contoh: 08xxxxxxxxxx"
+          />
+        </div>
+        <div class="form-group">
+          <label>Program Studi Pilihan</label>
+          <select id="userProdi">
+            <option value="">-- Silakan Pilih Program Studi --</option>
+            <option value="Penyuluhan Pertanian Berkelanjutan">
+              Penyuluhan Pertanian Berkelanjutan
+            </option>
+            <option value="Penyuluhan Peternakan dan Kesejahteraan Hewan">
+              Penyuluhan Peternakan dan Keswan
+            </option>
+            <option value="Agribisnis Hortikultura">
+              Agribisnis Hortikultura
+            </option>
+            <option value="Teknologi Mekanisasi Pertanian">
+              Teknologi Mekanisasi Pertanian
+            </option>
+            <option value="Kesehatan Hewan">Kesehatan Hewan</option>
+          </select>
+        </div>
+        <button
+          style="width: 100%; padding: 15px; font-size: 1.1em; margin-top: 20px"
+          onclick="startSimulation()"
+        >
+          MULAI SIMULASI (90 Menit)
+        </button>
+      </div>
+
+      <div id="quiz-screen" class="hidden">
+        <div class="header-info">
+          <div>
+            <strong
+              style="color: var(--polbangtan-dark); font-size: 1.2em"
+              id="participant-name"
+            ></strong
+            ><br />
+            <span
+              id="participant-prodi"
+              style="color: #666; font-size: 0.9em"
+            ></span>
+          </div>
+          <div class="timer" id="timer-display">90:00</div>
+        </div>
+
+        <div class="quiz-layout">
+          <div class="question-section" id="q-animator">
+            <span id="q-category" class="category-badge"></span>
+            <div class="question-text">
+              <strong
+                id="q-number"
+                style="color: var(--polbangtan-main)"
+              ></strong>
+              <span id="q-text"></span>
+            </div>
+            <div id="options-container"></div>
+
+            <div class="btn-group">
+              <button
+                onclick="prevQuestion()"
+                id="btn-prev"
+                style="background-color: #7f8c8d"
+              >
+                &laquo; Soal Sebelumnya
+              </button>
+              <button onclick="nextQuestion()" id="btn-next">
+                Soal Selanjutnya &raquo;
+              </button>
+            </div>
+          </div>
+
+          <div class="navigation-section">
+            <div
+              style="
+                text-align: center;
+                font-weight: bold;
+                margin-bottom: 15px;
+                color: var(--polbangtan-dark);
+                border-bottom: 2px solid #e0e0e0;
+                padding-bottom: 10px;
+              "
+            >
+              Peta Soal
+            </div>
+            <div class="grid-container" id="question-grid"></div>
+            <button
+              class="btn-danger"
+              style="width: 100%; margin-top: 25px"
+              onclick="confirmSubmit()"
+            >
+              Selesai Ujian
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div id="result-screen" class="hidden">
+        <div class="header-logo"><span>HASIL SIMULASI CAT</span></div>
+
+        <div class="score-box">
+          <h3 style="color: white; margin: 0; font-weight: normal">
+            Skor Akhir Anda
+          </h3>
+          <h1 id="final-score-text">0</h1>
+          <p style="margin: 0; opacity: 0.9">
+            Passing Grade disesuaikan dengan kuota masing-masing prodi.
+          </p>
+        </div>
+
+        <h3
+          style="
+            text-align: left;
+            border-bottom: 2px solid var(--polbangtan-main);
+            padding-bottom: 10px;
+          "
+        >
+          Rincian Kinerja per Subtes
+        </h3>
+        <table class="stats-table">
+          <thead>
+            <tr>
+              <th>Kategori Subtes</th>
+              <th>Jumlah Soal</th>
+              <th>Jawaban Benar</th>
+              <th>Akurasi</th>
+            </tr>
+          </thead>
+          <tbody id="stats-table-body"></tbody>
+        </table>
+
+        <h3
+          style="
+            text-align: left;
+            border-bottom: 2px solid var(--polbangtan-main);
+            padding-bottom: 10px;
+            margin-top: 40px;
+          "
+        >
+          Kunci Jawaban & Pembahasan Lengkap
+        </h3>
+        <div id="review-container"></div>
+        <button
+          style="width: 100%; padding: 15px; margin-top: 30px; font-size: 1.1em"
+          onclick="location.reload()"
+        >
+          KEMBALI KE BERANDA (COBA LAGI)
+        </button>
+      </div>
+    </div>
+    <script src="js/script.js"></script>
+  </body>
+</html>
